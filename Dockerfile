@@ -1,5 +1,5 @@
 # build stage
-FROM golang:1.22 AS builder
+FROM golang:1.26-alpine AS builder
 WORKDIR /app
 COPY . . 
 # CGO_ENABLED=0:關閉 CGO,讓 Go 產生純靜態連結的執行檔,不依賴系統的 C 函式庫(如 glibc)。
