@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/clary-work01/social/compare/v1.0.0...v1.1.0) (2026-07-03)
+
+
+### Features
+
+* add Dockerfile ([669f96e](https://github.com/clary-work01/social/commit/669f96ee9514fcd2f4f3057a121c4acbc1438ec5))
+
+
+### Bug Fixes
+
+* change dockerfile go version ([6cb3969](https://github.com/clary-work01/social/commit/6cb3969483f2fa0c7a127be401fe5b96cf35810a))
+
 ## 1.0.0 (2026-07-03)
 
 
