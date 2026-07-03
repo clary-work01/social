@@ -39,7 +39,7 @@ func main() {
 	godotenv.Load()
 
 	cfg := config{
-		port:        env.GetEnvString("SERVER_PORT", ":8080"),
+		port:        env.GetEnvString("ADDR", ":8080"),
 		env:         env.GetEnvString("ENV", "development"),
 		externalURL: env.GetEnvString("EXTERNAL_URL", "localhost:8080"),
 		frontendURL: env.GetEnvString("FRONTEND_URL", "http://localhost:4000"),
@@ -50,10 +50,9 @@ func main() {
 			maxIdleTime:  env.GetEnvString("DB_MAX_IDLE_TIME", "15m"),
 		},
 		redis: redisConfig{
-			addr:     env.GetEnvString("REDIS_ADDR", "localhost:6379"),
-			password: env.GetEnvString("REDIS_PW", ""),
-			db:       env.GetEnvInt("REDIS_DB", 0),
-			enabled:  env.GetEnvBool("REDIS_ENABLED", false),
+			addr:    env.GetEnvString("REDIS_ADDR", "localhost:6379"),
+			db:      env.GetEnvInt("REDIS_DB", 0),
+			enabled: env.GetEnvBool("REDIS_ENABLED", false),
 		},
 		mail: mailConfig{
 			exp:       time.Hour * 24 * 3, // 3 days
@@ -102,7 +101,6 @@ func main() {
 	if cfg.redis.enabled {
 		rdb = cache.NewRedisClient(
 			cfg.redis.addr,
-			cfg.redis.password,
 			cfg.redis.db,
 		)
 		logger.Info("redis connection established")

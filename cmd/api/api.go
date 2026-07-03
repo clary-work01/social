@@ -70,10 +70,9 @@ type tokenConfig struct {
 }
 
 type redisConfig struct {
-	addr     string
-	password string
-	db       int
-	enabled  bool // redis can be optional
+	addr    string
+	db      int
+	enabled bool // redis can be optional
 }
 
 type application struct {
