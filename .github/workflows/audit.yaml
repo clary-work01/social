@@ -8,25 +8,30 @@ on:
 
 jobs:
   audit:
+  # GitHub Actions 的 runner 每次啟動都是一台全新的空虛擬機 — 裡面只有作業系統
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v2
+    # actions/checkout 做的事情，本質上就是 git clone + git checkout <branch/commit>
+    # 把原始碼複製進 runner（現在有 .go 檔案了，但還不能跑）
+    - uses: actions/checkout@v6
 
+    #  把 Go 編譯器裝進 runner（現在有工具了）
     - name: Set up Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v6
       with:
         go-version: 1.26.3
 
     - name: Verify Dependencies
       run: go mod verify
 
+    # 用 Go 編譯器，把第 1 步的原始碼編譯成二進制執行檔
     - name: Build
       run: go build -v ./...
 
     - name: Run go vet
       run: go vet ./...
 
-
+    # staticcheck 是 Go 生態裡最常用的 linter 之一（比內建的 go vet 更嚴格全面）
     - name: Install staticcheck
       run: go install honnef.co/go/tools/cmd/staticcheck@latest
 
