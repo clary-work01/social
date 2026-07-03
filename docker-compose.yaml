@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: chainflow_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: chainflow_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    container_name: chainflow_redis
+    ports:
+      - "6379:6379"
+    # 啟動參數：每 60 秒至少有 1 次寫入就做持久化（RDB snapshot），log 只顯示 warning 以上
+    command: redis-server --save 60 1 --loglevel warning
+
+  redisinsight:
+    image: redis/redisinsight:latest
+    container_name: redisinsight
+    ports:
+      - "127.0.0.1:5540:5540"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

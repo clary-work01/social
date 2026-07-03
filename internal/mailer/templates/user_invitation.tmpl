@@ -1,0 +1,19 @@
+{{define "subject"}} Finish Registration with Chainflow {{end}}
+
+{{define "body"}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>歡迎加入 ChainFlow！</h1>
+    <p>Hi {{.Username}}，請點擊下方連結啟用你的帳號</p>
+    <a href="{{.ActivationURL}}">{{.ActivationURL}}</a>
+    <p>此連結將於 3天 後失效。</p>
+</body>
+</html>
+
+{{end}}

@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  mode: debug
+
+database:
+  host: localhost
+  port: 5432
+  user: admin
+  password: admin123
+  name: chainflow_db
+  sslmode: disable
+
+jwt:
+  secret: your_jwt_secret_key
+  access_token_ttl: 15      # 分鐘，純數字
+  refresh_token_ttl: 10080  # 分鐘，純數字（7天）
+
+redis:
+  host: localhost
+  port: 6379
+  password: redis_password
+  db: 0
